@@ -1,3 +1,3 @@
-export * from './base-command';
-export * from './hello';
+export * from './base-commands';
+export * from './birthday';
 export * from './commands-list';

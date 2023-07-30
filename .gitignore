@@ -132,4 +132,4 @@ dist
 # config
 .env
 config.json
-.eslintignore
+.vscode

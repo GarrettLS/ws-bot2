@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/bot.ts",
+    "build:dev": "ts-node src/bot.ts",
+    "build:prod": "tsc",
+    "start:dev": "npx nodemon",
     "lint": "eslint . --ext .ts"
   },
   "repository": {
@@ -18,14 +20,23 @@
   },
   "homepage": "https://github.com/GarrettLS/ws-bot2#readme",
   "dependencies": {
+    "axios": "^1.4.0",
     "discord.js": "^14.11.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "moment": "^2.29.4",
+    "node-cron": "^3.0.2",
+    "sequelize": "^6.32.1",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "@types/node": "^20.4.5",
+    "@types/node-cron": "^3.0.8",
+    "@types/sqlite3": "^3.1.8",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
     "eslint": "^8.46.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }
