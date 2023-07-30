@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:dev": "ts-node src/bot.ts",
-    "build:prod": "tsc",
+    "build:prod": "rm -rf ./dist && tsc",
     "start:dev": "npx nodemon",
     "lint": "eslint . --ext .ts"
   },
