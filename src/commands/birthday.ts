@@ -81,11 +81,13 @@ export const Birthday: ChatInputCommand = {
               }
 
               await interaction.followUp({
+                ephemeral: true,
                 content,
               });
             });
         } else {
           await interaction.followUp({
+            ephemeral: true,
             content: 'Invalid date',
           });
         }
@@ -101,6 +103,7 @@ export const Birthday: ChatInputCommand = {
           }
 
           await interaction.followUp({
+            ephemeral: true,
             content,
           });
         });
@@ -126,11 +129,13 @@ export const Birthday: ChatInputCommand = {
               }
 
               await interaction.followUp({
+                ephemeral: true,
                 content,
               });
             });
         } else {
           await interaction.followUp({
+            ephemeral: true,
             content: 'Invalid date.',
           });
         }
