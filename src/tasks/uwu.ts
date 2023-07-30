@@ -9,7 +9,7 @@ const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii'];
 
 export default (message: Message): void => {
   if (message.channelId === uwu_channel && words.some((w) => message.content.toLowerCase().includes(w))) {
-    if (Utils.randomPercent() <= 100) {
+    if (Utils.randomPercent() <= 40) {
       const term = Utils.randomArr(terms) as string;
       TenorService.search(term).then((gifs) => {
         const gif = (Utils.randomArr(gifs) as IGif).media[0].gif;

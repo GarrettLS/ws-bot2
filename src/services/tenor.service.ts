@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { tenor_token } from '../config.json';
 import { IGif, ITenorResponse } from '../models';
 
 export default class TenorService {
@@ -8,7 +7,7 @@ export default class TenorService {
   // Return 20 gifs from tenor
   static async search(term: string): Promise<IGif[]> {
     return await axios
-      .get<ITenorResponse>(`${this.url}/search?q=${term}&key=${tenor_token}`)
+      .get<ITenorResponse>(`${this.url}/search?q=${term}&key=${process.env.TENOR_TOKEN}`)
       .then((response) => {
         return response.data.results;
       })

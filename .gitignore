@@ -131,5 +131,4 @@ dist
 
 # config
 .env
-config.json
 .vscode

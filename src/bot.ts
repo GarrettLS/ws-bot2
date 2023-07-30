@@ -1,5 +1,4 @@
 import { Client, GatewayIntentBits } from 'discord.js';
-import { discord_token } from './config.json';
 import { ready, interactionCreate, messageCreate, guildMemberAdd } from './listeners';
 import Database from './db';
 
@@ -15,4 +14,4 @@ interactionCreate(client, db);
 messageCreate(client);
 guildMemberAdd(client);
 
-client.login(discord_token);
+client.login(process.env.DISCORD_TOKEN);
