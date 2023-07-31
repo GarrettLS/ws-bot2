@@ -132,3 +132,5 @@ dist
 # config
 .env
 .vscode
+docker-compose.yml
+data

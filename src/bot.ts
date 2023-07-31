@@ -6,7 +6,7 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
 });
 
-const db = new Database('db.sqlite');
+const db = new Database('data/db.sqlite');
 
 // Listeners
 ready(client, db);
