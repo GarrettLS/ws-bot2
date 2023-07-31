@@ -67,7 +67,6 @@ export const Birthday: ChatInputCommand = {
       case CommandNames.BIRTHDAY_ADD: {
         const month = chatInputInter.options.get(CommandNames.BIRTHDAY_MONTH)?.value as number;
         const day = chatInputInter.options.get(CommandNames.BIRTHDAY_DAY)?.value as number;
-        console.log(month, day);
         const date = moment({ month: month - 1, day }).utc();
 
         if (date.isValid()) {
