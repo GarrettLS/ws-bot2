@@ -1,0 +1,12 @@
+name: Publish to Docker Image
+on: [push]
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and push the image
+        run: |
+          docker login --username garrettls88 --password {{ secrets.GH_PAT }} ghcr.io
+          docker build . --tag ghcr.io/garrettls/ws-bot2:latest
+          docker push ghcr.io/garrettls/ws-bot2:latest
