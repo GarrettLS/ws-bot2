@@ -52,8 +52,13 @@ export const Birthday: ChatInputCommand = {
         },
       ],
     },
+    {
+      name: CommandNames.BIRTHDAY_CHECK,
+      description: 'WSBot: Shows the birthday you have on schedule',
+      type: ApplicationCommandOptionType.Subcommand,
+    },
   ],
-  run: async (_client: Client, interaction: CommandInteraction, db?: Database) => {
+  run: async (client: Client, interaction: CommandInteraction, db?: Database) => {
     const chatInputInter = interaction as ChatInputCommandInteraction;
     const subCommand = chatInputInter.options.getSubcommand(true);
 
@@ -140,6 +145,17 @@ export const Birthday: ChatInputCommand = {
           });
         }
 
+        break;
+      }
+      case CommandNames.BIRTHDAY_CHECK: {
+        db?.birthdays.get(chatInputInter.user.id).then(async (result) => {
+          if (result) {
+            await interaction.followUp({
+              ephemeral: true,
+              content: `Birthday announcement set for ${moment([0, result.month - 1, result.day, 8]).format('MMMM Do, h a')} CST`,
+            });
+          }
+        });
         break;
       }
     }

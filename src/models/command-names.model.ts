@@ -5,4 +5,5 @@ export class CommandNames {
   static readonly BIRTHDAY_ADD = 'add';
   static readonly BIRTHDAY_REMOVE = 'remove';
   static readonly BIRTHDAY_UPDATE = 'update';
+  static readonly BIRTHDAY_CHECK = 'check';
 }
