@@ -17,13 +17,13 @@ export const Birthday: ChatInputCommand = {
       options: [
         {
           name: CommandNames.BIRTHDAY_MONTH,
-          description: 'Birthday month',
+          description: 'Birthday month number (MM)',
           type: ApplicationCommandOptionType.Integer,
           required: true,
         },
         {
           name: CommandNames.BIRTHDAY_DAY,
-          description: 'Birthday day',
+          description: 'Birthday day number (DD)',
           type: ApplicationCommandOptionType.Integer,
           required: true,
         },
@@ -41,13 +41,13 @@ export const Birthday: ChatInputCommand = {
       options: [
         {
           name: CommandNames.BIRTHDAY_MONTH,
-          description: 'Birthday month',
+          description: 'Birthday month number (MM)',
           type: ApplicationCommandOptionType.Integer,
           required: true,
         },
         {
           name: CommandNames.BIRTHDAY_DAY,
-          description: 'Birthday day',
+          description: 'Birthday day number (DD)',
           type: ApplicationCommandOptionType.Integer,
           required: true,
         },
