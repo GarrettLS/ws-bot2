@@ -8,6 +8,7 @@ export const Birthday: ChatInputCommand = {
   name: CommandNames.BIRTHDAY,
   description: 'WSBot: Manage your birthday schedule',
   type: ApplicationCommandType.ChatInput,
+  ephemeral: true,
   options: [
     {
       name: CommandNames.BIRTHDAY_ADD,
