@@ -1,6 +1,7 @@
-# docker build ./ -t garrettls88/ws-bot2:latest
+# Auto-runs via .github/workflows/public-ghcr.yml
+
 # Use node v16 for arm64 (RaspberryPi)
-FROM --platform=linux/arm64 node:16
+FROM --platform=linux/arm64 node:18
 
 # Working dir
 WORKDIR /usr/src/app
