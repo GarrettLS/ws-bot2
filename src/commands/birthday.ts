@@ -67,7 +67,8 @@ export const Birthday: ChatInputCommand = {
       case CommandNames.BIRTHDAY_ADD: {
         const month = chatInputInter.options.get(CommandNames.BIRTHDAY_MONTH)?.value as number;
         const day = chatInputInter.options.get(CommandNames.BIRTHDAY_DAY)?.value as number;
-        const date = moment({ month, day }).utc();
+        console.log(month, day);
+        const date = moment({ month: month - 1, day }).utc();
 
         if (date.isValid()) {
           db?.birthdays
@@ -118,7 +119,7 @@ export const Birthday: ChatInputCommand = {
       case CommandNames.BIRTHDAY_UPDATE: {
         const month = chatInputInter.options.get(CommandNames.BIRTHDAY_MONTH)?.value as number;
         const day = chatInputInter.options.get(CommandNames.BIRTHDAY_DAY)?.value as number;
-        const date = moment({ month, day }).utc();
+        const date = moment({ month: month - 1, day }).utc();
 
         if (date.isValid()) {
           db?.birthdays
@@ -153,7 +154,7 @@ export const Birthday: ChatInputCommand = {
           if (result) {
             await interaction.followUp({
               ephemeral: true,
-              content: `Birthday announcement set for ${moment([0, result.month - 1, result.day, 8]).format('MMMM Do, h a')} CST`,
+              content: `Birthday announcement set for ${moment({ month: result.month - 1, day: result.day, hour: 8 }).format('MMMM Do, h a')} CST`,
             });
           }
         });
