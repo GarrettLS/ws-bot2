@@ -70,15 +70,14 @@ export const Birthday: ChatInputCommand = {
         const date = moment({ year: 0, month: month - 1, day });
 
         if (date.isValid()) {
-          const isLeapDay = month === 2 && day === 29;
           db?.birthdays
             .create({
               userId: chatInputInter.user.id,
-              month: isLeapDay ? 3 : month,
-              day: isLeapDay ? 1 : day,
+              month,
+              day,
             })
             .then(async (err) => {
-              let content = isLeapDay ? 'Added your bithday to the schedule as March 1st (Leap day fix)' : 'Added your birthday to the schedule.';
+              let content = 'Added your birthday to the schedule.';
               if (err) {
                 if (err.name === 'SequelizeUniqueConstraintError') {
                   content = 'Your birthday already exists on the schedule.';

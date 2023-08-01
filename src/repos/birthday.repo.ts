@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize, ModelStatic, Model } from 'sequelize';
+import { DataTypes, Sequelize, ModelStatic, Model, Op } from 'sequelize';
 import { IBirthday } from 'src/models';
 
 export class BirthdaysRepo {
@@ -60,8 +60,22 @@ export class BirthdaysRepo {
     return null;
   }
 
-  async getAllByDate(month: number, day: number): Promise<IBirthday[]> {
-    const birthdays = await this.data.findAll({ where: { month: month, day: day } });
+  async getAllByDate(month: number, day: number, isLeapYear: boolean): Promise<IBirthday[]> {
+    let birthdays: Model<IBirthday, IBirthday>[] = [];
+
+    // if it isn't leap year and it's mar 1st then get all users with mar 1st and feb 29th
+    if (!isLeapYear && month === 3 && day === 1) {
+      birthdays = await this.data.findAll({
+        where: {
+          [Op.or]: [
+            { month: month, day: day },
+            { month: 2, day: 29 },
+          ],
+        },
+      });
+    } else {
+      birthdays = await this.data.findAll({ where: { month: month, day: day } });
+    }
 
     if (birthdays.length) {
       return birthdays.map((b) => b.toJSON());
