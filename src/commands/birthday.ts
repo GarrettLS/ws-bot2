@@ -67,17 +67,18 @@ export const Birthday: ChatInputCommand = {
       case CommandNames.BIRTHDAY_ADD: {
         const month = chatInputInter.options.get(CommandNames.BIRTHDAY_MONTH)?.value as number;
         const day = chatInputInter.options.get(CommandNames.BIRTHDAY_DAY)?.value as number;
-        const date = moment({ month: month - 1, day }).utc();
+        const date = moment({ year: 0, month: month - 1, day });
 
         if (date.isValid()) {
+          const isLeapDay = month === 2 && day === 29;
           db?.birthdays
             .create({
               userId: chatInputInter.user.id,
-              month,
-              day,
+              month: isLeapDay ? 3 : month,
+              day: isLeapDay ? 1 : day,
             })
             .then(async (err) => {
-              let content = 'Added your birthday to the schedule.';
+              let content = isLeapDay ? 'Added your bithday to the schedule as March 1st (Leap day fix)' : 'Added your birthday to the schedule.';
               if (err) {
                 if (err.name === 'SequelizeUniqueConstraintError') {
                   content = 'Your birthday already exists on the schedule.';
@@ -118,7 +119,7 @@ export const Birthday: ChatInputCommand = {
       case CommandNames.BIRTHDAY_UPDATE: {
         const month = chatInputInter.options.get(CommandNames.BIRTHDAY_MONTH)?.value as number;
         const day = chatInputInter.options.get(CommandNames.BIRTHDAY_DAY)?.value as number;
-        const date = moment({ month: month - 1, day }).utc();
+        const date = moment({ year: 0, month: month - 1, day }).utc();
 
         if (date.isValid()) {
           db?.birthdays
