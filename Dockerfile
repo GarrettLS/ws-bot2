@@ -15,7 +15,7 @@ COPY package*.json ./
 # Install files
 RUN npm install
 
-# Copy source files
+# Copy source files (- .dockerignore)
 COPY . .
 
 # Build
