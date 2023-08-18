@@ -8,19 +8,27 @@ const words = ['uwu', 'owo'];
 const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii'];
 
 export default (message: Message): void => {
-  if (message.channelId === uwu_channel && words.some((w) => message.content.toLowerCase().includes(w))) {
-    if (Utils.randomPercent() <= 60) {
-      const term = Utils.randomArr(terms) as string;
-      TenorService.search(term).then((gifs) => {
-        const gif = (Utils.randomArr(gifs) as IGif).media[0].gif;
-        message.channel.send({
-          embeds: [
-            {
-              image: { url: gif.url },
-            },
-          ],
+  if (message.channelId === uwu_channel) {
+    console.log(`Message sent to uwu channel: ${message.content}`);
+    if (words.some((w) => message.content.toLowerCase().includes(w))) {
+      console.log('Message passed words validation.');
+      const rolled = Utils.randomPercent();
+      console.log(`Number rolled for uwu: ${rolled}`);
+      if (rolled <= 60) {
+        const term = Utils.randomArr(terms) as string;
+        console.log(`Term used for uwu: ${term}`);
+        TenorService.search(term).then((gifs) => {
+          const gif = (Utils.randomArr(gifs) as IGif).media[0].gif;
+          console.log(`Sending GIF: ${gif}`);
+          message.channel.send({
+            embeds: [
+              {
+                image: { url: gif.url },
+              },
+            ],
+          });
         });
-      });
+      }
     }
   }
 };

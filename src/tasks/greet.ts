@@ -3,7 +3,7 @@ import { greeting_channel, guide_channel, roles_channel } from '../config.json';
 
 export default (client: Client, member: GuildMember): void => {
   const channel = client.channels.cache.get(greeting_channel) as TextChannel;
-
+  console.log(`Greeting ${member.user.displayName}`);
   channel.send({
     embeds: [
       {

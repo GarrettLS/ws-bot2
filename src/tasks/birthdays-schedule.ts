@@ -11,15 +11,19 @@ export default (client: Client, db: Database) => {
     const day = now.date();
     const isLeapYear = now.isLeapYear();
     const isRealLeapDay = isLeapYear && month === 2 && day === 29;
+    console.log(`Checking for birthdays for ${now}...`);
 
     db.birthdays.getAllByDate(month, day, isLeapYear).then((result) => {
       if (result.length) {
+        console.log(`${result.length} brithdays found.`);
         const channel = client.channels.cache.get(primary_channel) as TextChannel;
         const users = result.map((u) => `<@${u.userId}>`).join(', ');
 
         channel.send({
           content: `Happy birthday ${users}!${isRealLeapDay ? ' Youve finally aged after four years.' : ''}`,
         });
+      } else {
+        console.log('No birthdays found.');
       }
     });
   });
