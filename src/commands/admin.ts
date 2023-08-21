@@ -4,7 +4,7 @@ import { CommandNames } from '../models';
 import Database from '../db';
 import moment from 'moment';
 
-export const Birthday: ChatInputCommand = {
+export const Admin: ChatInputCommand = {
   name: CommandNames.ADMIN,
   description: 'WSBot Admin: Administrator commands',
   type: ApplicationCommandType.ChatInput,

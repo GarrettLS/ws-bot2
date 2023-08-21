@@ -8,5 +8,5 @@ export class CommandNames {
   static readonly BIRTHDAY_CHECK = 'check';
 
   static readonly ADMIN = 'admin';
-  static readonly ADMIN_LIST_BIRTHDAYS = 'check';
+  static readonly ADMIN_LIST_BIRTHDAYS = 'birthdays';
 }

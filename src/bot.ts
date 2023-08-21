@@ -20,5 +20,5 @@ ready(client, db);
 interactionCreate(client, db);
 messageCreate(client);
 guildMemberAdd(client);
-console.log(process.env.DISCORD_TOKEN);
+
 client.login(process.env.DISCORD_TOKEN);

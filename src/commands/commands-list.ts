@@ -1,3 +1,3 @@
-import { ChatInputCommand, Birthday } from '.';
+import { ChatInputCommand, Birthday, Admin } from '.';
 
-export const CommandsList: ChatInputCommand[] = [Birthday];
+export const CommandsList: ChatInputCommand[] = [Birthday, Admin];
