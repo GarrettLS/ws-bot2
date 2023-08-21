@@ -68,8 +68,10 @@ export const Birthday: ChatInputCommand = {
         const month = chatInputInter.options.get(CommandNames.BIRTHDAY_MONTH)?.value as number;
         const day = chatInputInter.options.get(CommandNames.BIRTHDAY_DAY)?.value as number;
         const date = moment({ year: 0, month: month - 1, day });
+        console.log(`Trying to add birthday for date: ${date} for ID ${chatInputInter.user.id}.`);
 
         if (date.isValid()) {
+          console.log('Birthday valid. Adding to the database.');
           db?.birthdays
             .create({
               userId: chatInputInter.user.id,
@@ -101,6 +103,7 @@ export const Birthday: ChatInputCommand = {
         break;
       }
       case CommandNames.BIRTHDAY_REMOVE: {
+        console.log(`Deleting birthday from the database for ID ${chatInputInter.user.id}.`);
         db?.birthdays.delete(chatInputInter.user.id).then(async (affectedCount) => {
           let content = 'Removed your birthday from the schedule.';
 
@@ -116,6 +119,7 @@ export const Birthday: ChatInputCommand = {
         break;
       }
       case CommandNames.BIRTHDAY_UPDATE: {
+        console.log(`Updating birthday to the database for ID ${chatInputInter.user.id}.`);
         const month = chatInputInter.options.get(CommandNames.BIRTHDAY_MONTH)?.value as number;
         const day = chatInputInter.options.get(CommandNames.BIRTHDAY_DAY)?.value as number;
         const date = moment({ year: 0, month: month - 1, day }).utc();
@@ -149,6 +153,7 @@ export const Birthday: ChatInputCommand = {
         break;
       }
       case CommandNames.BIRTHDAY_CHECK: {
+        console.log(`User ID ${chatInputInter.user.id} checking birthday.`);
         db?.birthdays.get(chatInputInter.user.id).then(async (result) => {
           if (result) {
             await interaction.followUp({

@@ -60,6 +60,16 @@ export class BirthdaysRepo {
     return null;
   }
 
+  async getAll(): Promise<IBirthday[]> {
+    const birthdays = await this.data.findAll();
+
+    if (birthdays.length) {
+      return birthdays.map((b) => b.toJSON());
+    }
+
+    return [];
+  }
+
   async getAllByDate(month: number, day: number, isLeapYear: boolean): Promise<IBirthday[]> {
     let birthdays: Model<IBirthday, IBirthday>[] = [];
 
