@@ -7,7 +7,7 @@ export default class TenorService {
   // Return 20 gifs from tenor
   static async search(term: string): Promise<IGif[]> {
     console.log('Calling TenorService.search');
-    return await axios
+    return axios
       .get<ITenorResponse>(`${this.url}/search?q=${term}&key=${process.env.TENOR_TOKEN}`)
       .then((response) => {
         return response.data.results;

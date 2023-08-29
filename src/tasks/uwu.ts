@@ -7,19 +7,16 @@ import { IGif } from 'src/models/tenor.model';
 const words = ['uwu', 'owo'];
 const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii'];
 
-export default (message: Message): void => {
+export default async (message: Message): Promise<void> => {
   if (!message.author.bot && message.channelId === uwu_channel) {
-    console.log(`Message sent to uwu channel: ${message.content}`);
     if (words.some((w) => message.content.toLowerCase().includes(w))) {
-      console.log('Message passed words validation.');
       const rolled = Utils.randomPercent();
-      console.log(`Number rolled for uwu: ${rolled}`);
+      console.log(`uwu: '${message.content}' [${rolled} <= 60]`);
       if (rolled <= 60) {
         const term = Utils.randomArr(terms) as string;
-        console.log(`Term used for uwu: ${term}`);
-        TenorService.search(term).then((gifs) => {
+        await TenorService.search(term).then((gifs) => {
           const gif = (Utils.randomArr(gifs) as IGif).media[0].gif;
-          console.log(`Sending GIF: ${gif.url}`);
+          console.log(`Sending GIF [${gif.url}] from term '${term}'`);
           message.channel.send({
             embeds: [
               {
