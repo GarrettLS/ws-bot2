@@ -6,6 +6,7 @@ import { IGif } from 'src/models/tenor.model';
 
 const words = ['uwu', 'owo'];
 const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii'];
+const filter = ['uwu-ts-team-uwu', 'wow'];
 
 export default async (message: Message): Promise<void> => {
   if (!message.author.bot && message.channelId === uwu_channel) {
@@ -15,7 +16,9 @@ export default async (message: Message): Promise<void> => {
       if (rolled <= 60) {
         const term = Utils.randomArr(terms) as string;
         await TenorService.search(term).then((gifs) => {
-          const gif = (Utils.randomArr(gifs) as IGif).media[0].gif;
+          // Remove stupid returns
+          const filteredGifs = gifs.filter((g) => !filter.some((f) => g.media[0].gif.url.includes(f)));
+          const gif = (Utils.randomArr(filteredGifs) as IGif).media[0].gif;
           console.log(`Sending GIF [${gif.url}] from term '${term}'`);
           message.channel.send({
             embeds: [
