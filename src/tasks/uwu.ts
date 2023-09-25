@@ -15,7 +15,7 @@ export default async (message: Message): Promise<void> => {
       console.log(`uwu: '${message.content}' [${rolled} <= 60]`);
       if (rolled <= 60) {
         const term = Utils.randomArr(terms) as string;
-        await TenorService.search(term).then((gifs) => {
+        await TenorService.search(term, 12).then((gifs) => {
           // Remove stupid returns
           const filteredGifs = gifs.filter((g) => !filter.some((f) => g.media[0].gif.url.includes(f)));
           const gif = (Utils.randomArr(filteredGifs) as IGif).media[0].gif;

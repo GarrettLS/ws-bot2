@@ -5,10 +5,10 @@ export default class TenorService {
   private static url = 'https://g.tenor.com/v1';
 
   // Return 20 gifs from tenor
-  static async search(term: string): Promise<IGif[]> {
+  static async search(term: string, limit = 20): Promise<IGif[]> {
     console.log('Calling TenorService.search');
     return axios
-      .get<ITenorResponse>(`${this.url}/search?q=${term}&key=${process.env.TENOR_TOKEN}`)
+      .get<ITenorResponse>(`${this.url}/search?q=${term}&key=${process.env.TENOR_TOKEN}&limit=${limit}`)
       .then((response) => {
         return response.data.results;
       })
