@@ -6,7 +6,7 @@ import { IGif } from 'src/models/tenor.model';
 
 const words = ['uwu', 'owo'];
 const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii'];
-const filter = ['uwu-ts-team-uwu', 'wow', 'yato-herzog'];
+const filter = ['uwu-ts-team-uwu', 'wow', 'yato-herzog', 'really-no-way'];
 
 export default async (message: Message): Promise<void> => {
   if (!message.author.bot && message.channelId === uwu_channel) {
