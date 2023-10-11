@@ -1,19 +1,21 @@
 import { Message } from 'discord.js';
 import TenorService from '../services/tenor.service';
-import { uwu_channel } from '../config.json';
+import { uwu_channel, god_role } from '../config.json';
 import Utils from '../utils';
 import { IGif } from 'src/models/tenor.model';
 
 const words = ['uwu', 'owo'];
 const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii'];
 const filter = ['uwu-ts-team-uwu', 'wow', 'yato-herzog', 'really-no-way', 'happy-girls'];
+// winner & hiccup
+const bypassRoles = [god_role, '1159652743619825664'];
 
 export default async (message: Message): Promise<void> => {
   if (!message.author.bot && message.channelId === uwu_channel) {
     if (words.some((w) => message.content.toLowerCase().includes(w))) {
       const rolled = Utils.randomPercent();
       console.log(`uwu: '${message.content}' [${rolled} <= 60]`);
-      if (rolled <= 60) {
+      if (message.member?.roles.cache.hasAny(...bypassRoles) || rolled <= 60) {
         const term = Utils.randomArr(terms) as string;
         await TenorService.search(term, 12).then((gifs) => {
           // Remove stupid returns
