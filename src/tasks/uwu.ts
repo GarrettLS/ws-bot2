@@ -8,7 +8,7 @@ const words = ['uwu', 'owo'];
 const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii'];
 const filter = ['uwu-ts-team-uwu', 'wow', 'yato-herzog', 'really-no-way', 'happy-girls'];
 // winner & hiccup
-const bypassRoles = [god_role, '1159652743619825664'];
+const bypassRoles = [god_role, '1164320609170374678'];
 
 export default async (message: Message): Promise<void> => {
   if (!message.author.bot && message.channelId === uwu_channel) {
