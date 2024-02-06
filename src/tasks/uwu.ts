@@ -1,14 +1,13 @@
 import { Message } from 'discord.js';
 import TenorService from '../services/tenor.service';
-import { uwu_channel, god_role } from '../config.json';
+import { uwu_channel } from '../config.json';
 import Utils from '../utils';
 import { IGif } from 'src/models/tenor.model';
 
 const words = ['uwu', 'owo'];
 const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii'];
 const filter = ['uwu-ts-team-uwu', 'wow', 'yato-herzog', 'really-no-way', 'happy-girls', 'uwu-cute-arjay-gif', 'nYAbPZ6Im4YAAAAC/uwu-cute'];
-// winner & hiccup
-const bypassRoles = [god_role, '1164320609170374678'];
+const bypassRoles = ['1164320609170374678'];
 
 export default async (message: Message): Promise<void> => {
   if (!message.author.bot && message.channelId === uwu_channel) {
