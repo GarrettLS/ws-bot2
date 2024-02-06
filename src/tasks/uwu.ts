@@ -6,7 +6,10 @@ import { IGif } from 'src/models/tenor.model';
 
 const words = ['uwu', 'owo'];
 const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii'];
-const filter = ['uwu-ts-team-uwu', 'wow', 'yato-herzog', 'really-no-way', 'happy-girls', 'uwu-cute-arjay-gif', 'nYAbPZ6Im4YAAAAC/uwu-cute'];
+const filter = [
+  'uwu-ts-team-uwu', 'wow', 'yato-herzog', 'really-no-way',
+  'happy-girls', 'uwu-cute-arjay-gif', 'nYAbPZ6Im4YAAAAC/uwu-cute',
+  'hnwblWiTBC0AAAAC/kawaii-cute', 'KXUppoIwoNsAAAAC/uwu-skeleton', 'CCTYyxh2OXoAAAAC/s'];
 const bypassRoles = ['1164320609170374678'];
 
 export default async (message: Message): Promise<void> => {
