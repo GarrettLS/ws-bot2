@@ -1,7 +1,7 @@
 # Auto-runs via .github/workflows/public-ghcr.yml
 
 # Use node v18 for arm64 (RaspberryPi)
-FROM --platform=linux/arm64 node:18
+FROM --platform=linux/arm64 node:20
 
 # Working dir
 WORKDIR /usr/src/app
