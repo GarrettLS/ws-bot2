@@ -5,9 +5,11 @@ import Utils from '../utils';
 import { IGif } from 'src/models/tenor.model';
 
 const words = ['uwu', 'owo'];
-const terms = ['uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii', 'iyashikei', 'Nichijou-kei',
-  'anime sad', 'anime angry', 'anime bored', 'anime happy', 'anime lazy', 'anime calm', 'anime energetic', 'anime jealous',
-  'anime excited', 'anime frustrated', 'anime hungry', 'anime hurt', 'anime lonely', 'anime confused', 'anime silly',
+const terms = [
+  'uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii', 'iyashikei', 'Nichijou-kei',
+  'anime sad', 'anime angry', 'anime bored', 'anime lazy', 'anime frustrated',
+  'anime happy', 'anime calm', 'anime energetic', 'anime jealous', 'anime coffee', 'anime food', 'anime joy',
+  'anime excited', 'anime hungry', 'anime confused', 'anime silly',
   'anime nervous'];
 const filter = [
   'uwu-ts-team-uwu', 'wow', 'yato-herzog', 'really-no-way',
