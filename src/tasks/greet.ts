@@ -12,11 +12,11 @@ export default (client: Client, member: GuildMember): void => {
         fields: [
           {
             name: 'Guide',
-            value: `Check out <#${guide_channel}> for information about the server.`,
+            value: `Check out <#${guide_channel}> for information about the server. Also there you can take the Knights Radiant quiz so you can select a fancy role.`,
           },
           {
             name: 'Roles',
-            value: `See <#${roles_channel}> for adding or removing roles related to specific games.`,
+            value: `See <#${roles_channel}> for adding or removing roles related to activities and the Knights Radiant quiz.`,
           },
         ],
       },
