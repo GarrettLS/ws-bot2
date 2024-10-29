@@ -15,7 +15,7 @@ const filter = [
   'uwu-ts-team-uwu', 'wow', 'yato-herzog', 'really-no-way',
   'happy-girls', 'uwu-cute-arjay-gif', 'nYAbPZ6Im4YAAAAC/uwu-cute',
   'hnwblWiTBC0AAAAC/kawaii-cute', 'KXUppoIwoNsAAAAC/uwu-skeleton', 'CCTYyxh2OXoAAAAC/s',
-  'bpVoYKnPJaMAAAAC/pardon-me', 'dragonfish', 'kanna-kamui-kanna-kobayashi'];
+  'bpVoYKnPJaMAAAAC/pardon-me', 'dragonfish', 'kanna-kamui-kanna-kobayashi', 'me-when-the-gang-leaves'];
 const bypassRoles = ['1164320609170374678'];
 
 export default async (message: Message): Promise<void> => {
