@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 import TenorService from '../services/tenor.service';
 import { uwu_channel } from '../config.json';
 import Utils from '../utils';
-import { IGif } from 'src/models/tenor.model';
+import { IGif, IBypass } from 'src/models';
 
 const words = ['uwu', 'owo'];
 const terms = [
@@ -16,14 +16,28 @@ const filter = [
   'happy-girls', 'uwu-cute-arjay-gif', 'nYAbPZ6Im4YAAAAC/uwu-cute',
   'hnwblWiTBC0AAAAC/kawaii-cute', 'KXUppoIwoNsAAAAC/uwu-skeleton', 'CCTYyxh2OXoAAAAC/s',
   'bpVoYKnPJaMAAAAC/pardon-me', 'dragonfish', 'kanna-kamui-kanna-kobayashi', 'me-when-the-gang-leaves'];
-const bypassRoles = ['1164320609170374678'];
+const bypassRoles: IBypass[] = [
+  {
+    userId: '137723595018338304',
+    possibility: 100
+  },
+  {
+    userId: '137401966836842496',
+    possibility: 80
+  }
+];
+const defaultPossibility = 60;
 
 export default async (message: Message): Promise<void> => {
   if (!message.author.bot && message.channelId === uwu_channel) {
     if (words.some((w) => message.content.toLowerCase().includes(w))) {
       const rolled = Utils.randomPercent();
-      console.log(`uwu: '${message.content}' [${rolled} <= 60]`);
-      if (message.member?.roles.cache.hasAny(...bypassRoles) || rolled <= 60) {
+      const bypassRole = bypassRoles.find(r => message.member?.user.id === r.userId);
+      const possibility = bypassRole ? bypassRole.possibility : defaultPossibility;
+
+      console.log(`uwu: '${message.content}' [${rolled} <= ${possibility}]`);
+
+      if (rolled <= possibility) {
         const term = Utils.randomArr(terms) as string;
         await TenorService.search(term, 12).then((gifs) => {
           // Remove stupid returns
