@@ -1,5 +1,6 @@
 import { Message } from 'discord.js';
 import { IURLModel } from '../models';
+import { alternative_media_channel } from '../config.json';
 
 const common = ['https://', 'http://', 'https://www.', 'http://www.'];
 const medias: IURLModel[] = [
@@ -40,7 +41,13 @@ export default async (message: Message): Promise<void> => {
         embeds: [
           {
             title: 'Message Blocked.',
-            description: `<@${message.member?.user.id}>. We don't support fascist media. All links to ${found.name} are blocked.`
+            description: `<@${message.member?.user.id}>. We don't support fascist media. All links to ${found.name} are blocked.`,
+            fields: [
+              {
+                name: 'Alternatives',
+                value: `Check out <#${alternative_media_channel}> pinned messages for more information about what sources we don't allow, and alternatives to better media sources.`,
+              }
+            ],
           },
         ],
       });
