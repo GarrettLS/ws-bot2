@@ -1,5 +1,5 @@
 import { Client, GatewayIntentBits } from 'discord.js';
-import { ready, interactionCreate, messageCreate, guildMemberAdd } from './listeners';
+import { ready, interactionCreate, messageCreate, messageUpdate, guildMemberAdd } from './listeners';
 import Database from './db';
 import { config } from 'dotenv';
 import guildMemberLeave from './listeners/guild-member-leave';
@@ -20,6 +20,7 @@ const db = new Database('data/db.sqlite');
 ready(client, db);
 interactionCreate(client, db);
 messageCreate(client);
+messageUpdate(client);
 guildMemberAdd(client);
 guildMemberLeave(client, db);
 

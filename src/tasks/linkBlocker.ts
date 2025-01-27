@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import { Message, PartialMessage } from 'discord.js';
 import { IURLModel } from '../models';
 import { alternative_media_channel } from '../config.json';
 
@@ -30,9 +30,9 @@ const fixedMedias: IURLModel[] = common.flatMap(c => {
   });
 });
 
-export default async (message: Message): Promise<void> => {
-  if (!message.author.bot) {
-    const found = fixedMedias.find(w => message.content.toLowerCase().includes(w.url));
+export default async (message: Message | PartialMessage): Promise<void> => {
+  if (!message.author?.bot) {
+    const found = fixedMedias.find(w => message.content?.toLowerCase().includes(w.url));
     if (found) {
       console.log(`linkBlocker: '${message.content}' blocked from ${message.member?.user.id}.`);
       await message.delete();
