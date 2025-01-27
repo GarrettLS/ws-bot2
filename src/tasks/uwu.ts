@@ -6,7 +6,7 @@ import { IGif } from 'src/models/tenor.model';
 
 const words = ['uwu', 'owo'];
 const terms = [
-  'uwu', 'anime', 'studio ghibli', 'spy x family', 'kawaii', 'iyashikei', 'Nichijou-kei',
+  'anime', 'studio ghibli', 'spy x family', 'kawaii', 'iyashikei', 'Nichijou-kei',
   'anime sad', 'anime angry', 'anime bored', 'anime lazy', 'anime frustrated',
   'anime happy', 'anime calm', 'anime energetic', 'anime jealous', 'anime coffee', 'anime food', 'anime joy',
   'anime excited', 'anime hungry', 'anime confused', 'anime silly',
