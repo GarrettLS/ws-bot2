@@ -20,7 +20,7 @@ export default (client: Client, db: Database) => {
         const users = result.map((u) => `<@${u.userId}>`).join(', ');
 
         channel.send({
-          content: `Happy birthday ${users}!${isRealLeapDay ? ' Youve finally aged after four years.' : ''}`,
+          content: `Happy birthday ${users}!${isRealLeapDay ? ' You have finally aged after four years.' : ''}`,
         });
       } else {
         console.log('No birthdays found.');
