@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import { Message, TextChannel } from 'discord.js';
 import TenorService from '../services/tenor.service';
 import { uwu_channel } from '../config.json';
 import Utils from '../utils';
@@ -44,7 +44,7 @@ export default async (message: Message): Promise<void> => {
           const filteredGifs = gifs.filter((g) => !filter.some((f) => g.media[0].gif.url.includes(f)));
           const gif = (Utils.randomArr(filteredGifs) as IGif).media[0].gif;
           console.log(`Sending GIF [${gif.url}] from term '${term}'`);
-          message.channel.send({
+          (message.channel as TextChannel).send({
             embeds: [
               {
                 image: { url: gif.url },

@@ -6,9 +6,6 @@ FROM --platform=linux/arm64 node:20
 # Working dir
 WORKDIR /usr/src/app
 
-# Volumes
-VOLUME /usr/src/app/data
-
 # Copy package json files
 COPY package*.json ./
 

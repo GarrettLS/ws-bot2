@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize, ModelStatic, Model, Op } from 'sequelize';
+import { DataTypes, Sequelize, ModelStatic, Model, Op } from '@sequelize/core';
 import { IBirthday } from 'src/models';
 
 export class BirthdaysRepo {

@@ -18,7 +18,7 @@ const handleSlashCommand = async (client: Client, interaction: CommandInteractio
   }
 
   await interaction.deferReply({
-    ephemeral: slashCommand.ephemeral,
+    flags: slashCommand.flags,
   });
 
   slashCommand.run(client, interaction, db);

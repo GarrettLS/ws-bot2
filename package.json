@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/GarrettLS/ws-bot2#readme",
   "dependencies": {
+    "@sequelize/mariadb": "^7.0.0-alpha.44",
     "axios": "^1.4.0",
     "discord.js": "^14.11.0",
     "dotenv": "^16.3.1",

@@ -1,4 +1,4 @@
-import { Client, ApplicationCommandType, ApplicationCommandOptionType, ChatInputCommandInteraction, CommandInteraction } from 'discord.js';
+import { Client, ApplicationCommandType, ApplicationCommandOptionType, ChatInputCommandInteraction, CommandInteraction, MessageFlags } from 'discord.js';
 import { ChatInputCommand } from '.';
 import { CommandNames } from '../models';
 import Database from '../db';
@@ -8,7 +8,7 @@ export const Birthday: ChatInputCommand = {
   name: CommandNames.BIRTHDAY,
   description: 'WSBot: Manage your birthday schedule',
   type: ApplicationCommandType.ChatInput,
-  ephemeral: true,
+  flags: MessageFlags.Ephemeral,
   options: [
     {
       name: CommandNames.BIRTHDAY_ADD,
@@ -89,13 +89,13 @@ export const Birthday: ChatInputCommand = {
               }
 
               await interaction.followUp({
-                ephemeral: true,
+                flags: MessageFlags.Ephemeral,
                 content,
               });
             });
         } else {
           await interaction.followUp({
-            ephemeral: true,
+            flags: MessageFlags.Ephemeral,
             content: 'Invalid date',
           });
         }
@@ -112,7 +112,7 @@ export const Birthday: ChatInputCommand = {
           }
 
           await interaction.followUp({
-            ephemeral: true,
+            flags: MessageFlags.Ephemeral,
             content,
           });
         });
@@ -139,13 +139,13 @@ export const Birthday: ChatInputCommand = {
               }
 
               await interaction.followUp({
-                ephemeral: true,
+                flags: MessageFlags.Ephemeral,
                 content,
               });
             });
         } else {
           await interaction.followUp({
-            ephemeral: true,
+            flags: MessageFlags.Ephemeral,
             content: 'Invalid date.',
           });
         }
@@ -157,7 +157,7 @@ export const Birthday: ChatInputCommand = {
         db?.birthdays.get(chatInputInter.user.id).then(async (result) => {
           if (result) {
             await interaction.followUp({
-              ephemeral: true,
+              flags: MessageFlags.Ephemeral,
               content: `Birthday announcement set for ${moment({ month: result.month - 1, day: result.day, hour: 8 }).format('MMMM Do, h a')} CST`,
             });
           }

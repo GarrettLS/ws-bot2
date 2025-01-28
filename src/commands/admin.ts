@@ -1,4 +1,4 @@
-import { Client, ApplicationCommandType, ApplicationCommandOptionType, ChatInputCommandInteraction, CommandInteraction, PermissionFlagsBits, APIEmbedField } from 'discord.js';
+import { Client, ApplicationCommandType, ApplicationCommandOptionType, ChatInputCommandInteraction, CommandInteraction, PermissionFlagsBits, APIEmbedField, MessageFlags } from 'discord.js';
 import { ChatInputCommand } from '.';
 import { CommandNames } from '../models';
 import Database from '../db';
@@ -8,7 +8,7 @@ export const Admin: ChatInputCommand = {
   name: CommandNames.ADMIN,
   description: 'WSBot Admin: Administrator commands',
   type: ApplicationCommandType.ChatInput,
-  ephemeral: true,
+  flags: MessageFlags.Ephemeral,
   defaultMemberPermissions: PermissionFlagsBits.Administrator,
   options: [
     {
@@ -27,7 +27,7 @@ export const Admin: ChatInputCommand = {
         db?.birthdays.getAll().then(async (result) => {
           if (result.length) {
             await interaction.followUp({
-              ephemeral: true,
+              flags: MessageFlags.Ephemeral,
               embeds: [
                 {
                   title: 'Users Birthdays',
@@ -43,7 +43,7 @@ export const Admin: ChatInputCommand = {
             });
           } else {
             await interaction.followUp({
-              ephemeral: true,
+              flags: MessageFlags.Ephemeral,
               content: 'No birthdays stored in the database.',
             });
           }
