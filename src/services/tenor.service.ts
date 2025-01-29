@@ -7,14 +7,13 @@ export default class TenorService {
   // Return 20 gifs from tenor
   static async search(term: string, limit = 20): Promise<IGif[]> {
     console.log('Calling TenorService.search');
-    return axios
-      .get<ITenorResponse>(`${this.url}/search?q=${term}&key=${process.env.TENOR_TOKEN}&limit=${limit}`)
-      .then((response) => {
-        return response.data.results;
-      })
-      .catch((err) => {
-        console.log(err);
-        return [];
-      });
+
+    try {
+      const response = await axios.get<ITenorResponse>(`${this.url}/search?q=${term}&key=${process.env.TENOR_TOKEN}&limit=${limit}`);
+      return response.data.results;
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
   }
 }

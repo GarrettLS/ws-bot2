@@ -24,30 +24,30 @@ export const Admin: ChatInputCommand = {
     switch (subCommand) {
       case CommandNames.ADMIN_LIST_BIRTHDAYS: {
         console.log(`Admin with user ID ${chatInputInter.user.id} checked all of the birthdays in the database.`);
-        db?.birthdays.getAll().then(async (result) => {
-          if (result.length) {
-            await interaction.followUp({
-              flags: MessageFlags.Ephemeral,
-              embeds: [
-                {
-                  title: 'Users Birthdays',
-                  description: 'Users birthdays stored in the database',
-                  fields: result.map((birthday) => {
-                    return {
-                      name: birthday.userId,
-                      value: `${moment({ month: birthday.month - 1, day: birthday.day, hour: 8 }).format('MMMM Do, h a')} CST`,
-                    } as APIEmbedField;
-                  }),
-                },
-              ],
-            });
-          } else {
-            await interaction.followUp({
-              flags: MessageFlags.Ephemeral,
-              content: 'No birthdays stored in the database.',
-            });
-          }
-        });
+        const result = await db?.birthdays.getAll();
+
+        if (result && result.length) {
+          interaction.followUp({
+            flags: MessageFlags.Ephemeral,
+            embeds: [
+              {
+                title: 'Users Birthdays',
+                description: 'Users birthdays stored in the database',
+                fields: result.map((birthday) => {
+                  return {
+                    name: birthday.userId,
+                    value: `${moment({ month: birthday.month - 1, day: birthday.day, hour: 8 }).format('MMMM Do, h a')} CST`,
+                  } as APIEmbedField;
+                }),
+              },
+            ],
+          });
+        } else {
+          interaction.followUp({
+            flags: MessageFlags.Ephemeral,
+            content: 'No birthdays stored in the database.',
+          });
+        }
         break;
       }
     }
