@@ -9,6 +9,7 @@ export default async (message: Message, db: Database): Promise<void> => {
   const channel = message.guild?.channels.cache.find(c => c.id === message.channel.id);
   const category = message.guild?.channels.cache.find(c => c.id === channel?.parent?.id);
 
+  console.log(`checking if correct channel for jailed reaction - Category:${category?.name} | Channel ${channel?.name}`);
   if (!message.author?.bot && message.member && category?.name.toLocaleLowerCase() === 'general chats' && (channel && !avoidChannels.includes(channel.id))) {
     const result = await db.jailed.get(message.member.user.id);
 
