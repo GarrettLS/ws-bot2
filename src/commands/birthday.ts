@@ -11,18 +11,18 @@ export const Birthday: ChatInputCommand = {
   flags: MessageFlags.Ephemeral,
   options: [
     {
-      name: CommandNames.BIRTHDAY_ADD,
+      name: CommandNames.ADD,
       description: 'WSBot: Add your birthday to the schedule',
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          name: CommandNames.BIRTHDAY_MONTH,
+          name: CommandNames.MONTH,
           description: 'Birthday month number (MM)',
           type: ApplicationCommandOptionType.Integer,
           required: true,
         },
         {
-          name: CommandNames.BIRTHDAY_DAY,
+          name: CommandNames.DAY,
           description: 'Birthday day number (DD)',
           type: ApplicationCommandOptionType.Integer,
           required: true,
@@ -30,23 +30,23 @@ export const Birthday: ChatInputCommand = {
       ],
     },
     {
-      name: CommandNames.BIRTHDAY_REMOVE,
+      name: CommandNames.REMOVE,
       description: 'WSBot: Remove your birthday from the schedule',
       type: ApplicationCommandOptionType.Subcommand,
     },
     {
-      name: CommandNames.BIRTHDAY_UPDATE,
+      name: CommandNames.UPDATE,
       description: 'WSBot: Update your birthday on the schedule',
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          name: CommandNames.BIRTHDAY_MONTH,
+          name: CommandNames.MONTH,
           description: 'Birthday month number (MM)',
           type: ApplicationCommandOptionType.Integer,
           required: true,
         },
         {
-          name: CommandNames.BIRTHDAY_DAY,
+          name: CommandNames.DAY,
           description: 'Birthday day number (DD)',
           type: ApplicationCommandOptionType.Integer,
           required: true,
@@ -54,7 +54,7 @@ export const Birthday: ChatInputCommand = {
       ],
     },
     {
-      name: CommandNames.BIRTHDAY_CHECK,
+      name: CommandNames.CHECK,
       description: 'WSBot: Shows the birthday you have on schedule',
       type: ApplicationCommandOptionType.Subcommand,
     },
@@ -64,9 +64,9 @@ export const Birthday: ChatInputCommand = {
     const subCommand = chatInputInter.options.getSubcommand(true);
 
     switch (subCommand) {
-      case CommandNames.BIRTHDAY_ADD: {
-        const month = chatInputInter.options.get(CommandNames.BIRTHDAY_MONTH)?.value as number;
-        const day = chatInputInter.options.get(CommandNames.BIRTHDAY_DAY)?.value as number;
+      case CommandNames.ADD: {
+        const month = chatInputInter.options.get(CommandNames.MONTH)?.value as number;
+        const day = chatInputInter.options.get(CommandNames.DAY)?.value as number;
         const date = moment({ year: 0, month: month - 1, day });
         console.log(`Trying to add birthday for date: ${date}.`);
 
@@ -103,7 +103,7 @@ export const Birthday: ChatInputCommand = {
 
         break;
       }
-      case CommandNames.BIRTHDAY_REMOVE: {
+      case CommandNames.REMOVE: {
         console.log('Deleting birthday from the database.');
         const affectedCount = await db?.birthdays.delete(chatInputInter.user.id);
         let content = 'Removed your birthday from the schedule.';
@@ -118,10 +118,10 @@ export const Birthday: ChatInputCommand = {
         });
         break;
       }
-      case CommandNames.BIRTHDAY_UPDATE: {
+      case CommandNames.UPDATE: {
         console.log('Updating birthday to the database.');
-        const month = chatInputInter.options.get(CommandNames.BIRTHDAY_MONTH)?.value as number;
-        const day = chatInputInter.options.get(CommandNames.BIRTHDAY_DAY)?.value as number;
+        const month = chatInputInter.options.get(CommandNames.MONTH)?.value as number;
+        const day = chatInputInter.options.get(CommandNames.DAY)?.value as number;
         const date = moment({ year: 0, month: month - 1, day }).utc();
 
         if (date.isValid()) {
@@ -151,7 +151,7 @@ export const Birthday: ChatInputCommand = {
 
         break;
       }
-      case CommandNames.BIRTHDAY_CHECK: {
+      case CommandNames.CHECK: {
         console.log('User checking birthday.');
         const result = await db?.birthdays.get(chatInputInter.user.id);
         

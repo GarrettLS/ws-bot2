@@ -1,10 +1,11 @@
 import { Sequelize } from '@sequelize/core';
-import { BirthdaysRepo } from './repos/birthday.repo';
 import { MariaDbDialect } from '@sequelize/mariadb';
+import { BirthdaysRepo, JailedRepo } from './repos';
 
 export default class Database {
   private sequelize: Sequelize;
   public birthdays: BirthdaysRepo;
+  public jailed: JailedRepo;
 
   constructor() {
     this.sequelize = new Sequelize({
@@ -19,9 +20,11 @@ export default class Database {
     });
 
     this.birthdays = new BirthdaysRepo(this.sequelize);
+    this.jailed = new JailedRepo(this.sequelize);
   }
 
   sync(): void {
     this.birthdays.sync();
+    this.jailed.sync();
   }
 }

@@ -12,17 +12,17 @@ export const Admin: ChatInputCommand = {
   defaultMemberPermissions: PermissionFlagsBits.Administrator,
   options: [
     {
-      name: CommandNames.ADMIN_LIST_BIRTHDAYS,
+      name: CommandNames.BIRTHDAYS,
       description: 'WSBot Admin: List birthdays',
       type: ApplicationCommandOptionType.Subcommand,
-    },
+    }
   ],
   run: async (_client: Client, interaction: CommandInteraction, db?: Database) => {
     const chatInputInter = interaction as ChatInputCommandInteraction;
     const subCommand = chatInputInter.options.getSubcommand(true);
 
     switch (subCommand) {
-      case CommandNames.ADMIN_LIST_BIRTHDAYS: {
+      case CommandNames.BIRTHDAYS: {
         console.log(`Admin with user ID ${chatInputInter.user.id} checked all of the birthdays in the database.`);
         const result = await db?.birthdays.getAll();
 

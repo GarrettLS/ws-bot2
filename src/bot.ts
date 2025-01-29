@@ -19,7 +19,7 @@ const db = new Database();
 // Listeners
 ready(client, db);
 interactionCreate(client, db);
-messageCreate(client);
+messageCreate(client, db);
 messageUpdate(client);
 guildMemberAdd(client);
 guildMemberLeave(client, db);
