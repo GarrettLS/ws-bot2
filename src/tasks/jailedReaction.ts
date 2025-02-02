@@ -16,7 +16,7 @@ export default async (message: Message, db: Database): Promise<void> => {
     if (result) {
       const rolled = Utils.randomPercent();
 
-      if (rolled <= 20) {
+      if (rolled <= 10) {
         const reaction = Utils.randomArr(reactions) as string;
         const emoji = message.client.emojis.cache.get(reaction);
         
